@@ -1,0 +1,3 @@
+EMAIL_HOST_USER = 'annonymoustest24@gmail.com'  
+EMAIL_HOST_PASSWORD = 'test@12345' 
+EMAIL_FROM = 'annonymoustest24@gmail.com'
