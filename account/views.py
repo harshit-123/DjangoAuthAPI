@@ -53,6 +53,15 @@ class UserProfileView(APIView):
         serializer = ProfileViewSerializer(request.user)
         return Response(serializer.data, status=status.HTTP_200_OK) 
     
+    def patch(self, request, fomat=None, id=None):
+        user = User.objects.get(id=id)
+        serializer = ProfileViewSerializer(user, data=request.data, partial=True)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response({"Msg": "Profile Updated Successfully"}, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    
 
 class UserChangePasswordView(APIView):
     renderer_classes = [UserRenderers]
